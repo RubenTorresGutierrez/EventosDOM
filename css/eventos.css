@@ -1,0 +1,15 @@
+/*  eventos.css
+    Autor: Rubén Torres Gutiérrez <rtorresgutierrez.guadalupe@alumnado.fundacionloyola.net>
+    Licencia: GPL v3 o superior
+*/
+img{
+  width: 90%;
+  text-align: center;
+}
+
+.seta{
+  position: absolute;
+  left: 550px;
+  top: 70px;
+  width: 50px;
+}
