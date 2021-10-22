@@ -18,8 +18,11 @@ function iniciar(){
   //Con .addEventListener() se van añadiendo, con onclick() se reemplaza
   //img.addEventListener('click', manejadorClick);
   //img.addEventListener('click', manejadorClick2);
-  mapa.addEventListener('onclick', ponerSeta);
+  //mapa.onclick=ponerSeta;
+  //mapa.oncontextmenu=quitarSeta;
+  mapa.addEventListener('click', ponerSeta);
   mapa.addEventListener('contextmenu', quitarSeta);
+  mapa.addEventListener('dragstart', quitarDefault);
 
 }
 
@@ -34,6 +37,8 @@ function ponerSeta(evento){
   seta.src = 'img/seta.png';
   //class
   seta.classList.add('seta');
+  //Cuando se pulse en esa seta va a la funcion quitarSeta()
+  seta.addEventListener('contextmenu', quitarSeta);
   //Posicion
   seta.style.top = `${evento.clientY - 25}px`;
   seta.style.left = `${evento.clientX - 25}px`;
@@ -42,6 +47,15 @@ function ponerSeta(evento){
 
 function quitarSeta(evento){
 
-  
+  evento.stopPropagation(); //Evitas que el evento se transfiera a las capas superiores
+  evento.preventDefault(); //Se evita el comportamiento por defecto del navegador
+  if(evento.target.classList == 'seta')
+    evento.target.remove();
+
+}
+
+function quitarDefault(evento){
+
+  evento.preventDefault();
 
 }
